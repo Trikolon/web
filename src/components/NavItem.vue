@@ -55,15 +55,4 @@ export default {
         padding-top: 8px;
     }
 
-
-    /* FIXME: duplicate (from Navigation.vue) */
-    .flex-container {
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-content: center;
-        align-items: center;
-        height: 100%;
-    }
 </style>

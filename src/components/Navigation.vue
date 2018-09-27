@@ -35,9 +35,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-
-
+<style>
   .flex-container {
     display: flex;
     flex-direction: column;
@@ -47,24 +45,20 @@ export default {
     align-items: center;
     height: 100%;
   }
-
+</style>
+<style scoped>
   #heading {
     margin: 1.5em;
   }
-
   #navigation > a {
     opacity: 0.8;
     padding: 1em;
 
   }
-
   #navigation > a:hover {
     opacity: 1;
   }
-
   #navigation {
     flex: 2;
   }
-
-
 </style>
