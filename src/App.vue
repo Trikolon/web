@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="loaded">
     <Navigation :heading="heading" :nav-items="navItems"></Navigation>
   </div>
 </template>
@@ -58,10 +58,29 @@ export default {
     font-family: "Courier New", serif;
     color: white;
   }
-  #app {
+
+  @keyframes fadein {
+    from { opacity: 0; }
+    to { opacity: .25 }
+  }
+
+  #app:after {
     background: #121010;
-    width: 100%;
-    height: 100%;
+    background: url('./assets/berlin.jpg') no-repeat fixed center;
+    background-size: cover;
+    content: "";
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+
+    animation: fadein 2s;
+    animation-fill-mode: forwards;
+  }
+
+  #app {
     top: 0;
     left: 0;
     bottom: 0;
