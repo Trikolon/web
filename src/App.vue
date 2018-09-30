@@ -1,16 +1,21 @@
 <template>
-  <div id="app" class="loaded">
-    <Navigation :heading="heading" :nav-items="navItems"></Navigation>
+  <div id="app">
+    <Background></Background>
+    <div id="centerBox">
+      <Navigation :heading="heading" :nav-items="navItems"></Navigation>
+    </div>
   </div>
 </template>
 
 <script>
 import Navigation from './components/Navigation.vue';
+import Background from './components/Background.vue';
 
 export default {
   name: 'app',
   components: {
     Navigation,
+    Background,
   },
   data: () => ({
     heading: 'Paul Zühlcke',
@@ -54,33 +59,13 @@ export default {
 
 <style>
   body, html {
-    background-color: black;
+    background-color: #121010;
     font-family: "Courier New", serif;
     color: white;
+    margin: 0;
   }
 
-  @keyframes fadein {
-    from { opacity: 0; }
-    to { opacity: .25 }
-  }
-
-  #app:after {
-    background: #121010;
-    background: url('./assets/berlin.jpg') no-repeat fixed center;
-    background-size: cover;
-    content: "";
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    position: absolute;
-    z-index: -1;
-
-    animation: fadein 2s;
-    animation-fill-mode: forwards;
-  }
-
-  #app {
+  #centerBox {
     top: 0;
     left: 0;
     bottom: 0;
