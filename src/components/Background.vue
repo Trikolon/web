@@ -1,16 +1,15 @@
 <template>
-    <div id="backgroundContainer">
-        <transition name="preview">
-            <img class="backgroundImage blur"
-                 v-show="!loaded"
-                 :src="backgroundImage.preview">
-        </transition>
-        <transition name="full">
-            <img ref="imgFull" class="backgroundImage"
-                 v-show="loaded"
-                 :src="backgroundImage.full">
-        </transition>
-    </div>
+<div id="backgroundContainer">
+  <transition name="preview">
+    <img class="backgroundImage blur"
+         :src="backgroundImage.preview">
+  </transition>
+  <transition name="full">
+    <img ref="imgFull" class="backgroundImage"
+         v-show="loaded"
+         :src="backgroundImage.full">
+  </transition>
+</div>
 </template>
 
 <script>
@@ -35,8 +34,6 @@ export default {
       },
     ],
   }),
-  computed: {
-  },
   methods: {
     getRandomInt(min, max) {
       return Math.floor(Math.random() * ((max - min) + 1)) + min;
@@ -51,41 +48,52 @@ export default {
   },
   mounted() {
     this.$refs.imgFull.addEventListener('load', () => {
-      // FIXME: Artificial debug delay
-      setTimeout(() => {
-        console.log('Full image loaded');
-        this.loaded = true;
-      }, 1000);
+      this.loaded = true;
     });
   },
 };
 </script>
 
 <style scoped>
-    .backgroundImage {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        display: block;
-        object-fit: cover;
-        width: 100vw;
-        height: 100vh;
-        opacity: .25;
-    }
+.backgroundImage {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: block;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
 
-    @keyframes blur {
-        from { filter: blur(15px)}
-        to {filter: blur(0px)}
-    }
+#backgroundContainer {
+  opacity: 0.25;
+}
 
-    .blur {
-        filter: blur(15px);
-    }
+@keyframes blur {
+  from {
+    filter: blur(15px)
+  }
+  to {
+    filter: blur(0px)
+  }
+}
 
-    .full-enter-active {
-        animation: blur 1s;
-    }
+@keyframes appear {
+  from {
+    filter: opacity(0)
+  }
+  to {
+    filter: opacity(1)
+  }
+}
 
+.blur {
+  filter: blur(15px);
+}
+
+.full-enter-active {
+  animation: appear 1s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+}
 </style>
