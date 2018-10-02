@@ -1,25 +1,39 @@
 <template>
-    <div id="backgroundContainer">
-        <transition name="fade" appear>
-        <img v-if="backgroundImage" id="backgroundImage" :src="backgroundImage">
-        </transition>
-    </div>
+<div id="backgroundContainer">
+  <transition name="preview">
+    <img class="backgroundImage blur"
+         :src="backgroundImage.preview">
+  </transition>
+  <transition name="full">
+    <img ref="imgFull" class="backgroundImage"
+         v-show="loaded"
+         :src="backgroundImage.full">
+  </transition>
+</div>
 </template>
 
 <script>
-
+import berlinPreview from '../assets/berlin-preview.jpg';
+import berlinFull from '../assets/berlin.jpg';
+import ouluPreview from '../assets/oulu-preview.jpg';
+import ouluFull from '../assets/oulu.jpg';
 
 export default {
   name: 'Background',
   data: () => ({
-    backgroundImage: null,
+    backgroundImage: {},
+    loaded: false,
     imageFiles: [
-      import('../assets/berlin.jpg'),
-      import('../assets/oulu.jpg'),
+      {
+        full: berlinFull,
+        preview: berlinPreview,
+      },
+      {
+        full: ouluFull,
+        preview: ouluPreview,
+      },
     ],
   }),
-  computed: {
-  },
   methods: {
     getRandomInt(min, max) {
       return Math.floor(Math.random() * ((max - min) + 1)) + min;
@@ -30,31 +44,56 @@ export default {
     },
   },
   beforeMount() {
-    this.getRandomImage()
-      .then((img) => {
-        this.backgroundImage = img.default;
-      });
+    this.backgroundImage = this.getRandomImage();
+  },
+  mounted() {
+    this.$refs.imgFull.addEventListener('load', () => {
+      this.loaded = true;
+    });
   },
 };
 </script>
 
 <style scoped>
-    #backgroundImage {
-        display: block;
-        object-fit: cover;
-        width: 100vw;
-        height: 100vh;
-        opacity: .25;
-    }
-    @keyframes fadein {
-        from { opacity: 0; }
-        to { opacity: .25 }
-    }
-    .fade-enter-active, .fade-leave-active {
-        animation: fadein 2s;
-        animation-fill-mode: forwards;
-    }
-    .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-        opacity: 0;
-    }
+.backgroundImage {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: block;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+#backgroundContainer {
+  opacity: 0.25;
+}
+
+@keyframes blur {
+  from {
+    filter: blur(15px)
+  }
+  to {
+    filter: blur(0px)
+  }
+}
+
+@keyframes appear {
+  from {
+    filter: opacity(0)
+  }
+  to {
+    filter: opacity(1)
+  }
+}
+
+.blur {
+  filter: blur(15px);
+}
+
+.full-enter-active {
+  animation: appear 1s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+}
 </style>
