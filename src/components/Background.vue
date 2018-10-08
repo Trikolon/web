@@ -2,6 +2,7 @@
 <div id="backgroundContainer">
   <transition name="preview">
     <img class="backgroundImage blur"
+         :style="computedStyle"
          :src="backgroundImage.preview">
   </transition>
   <transition name="full">
@@ -27,13 +28,24 @@ export default {
       {
         full: berlinFull,
         preview: berlinPreview,
+        color: '#786a5f',
       },
       {
         full: ouluFull,
         preview: ouluPreview,
+        color: '#466c9a',
       },
     ],
   }),
+  computed: {
+    computedStyle() {
+      const style = {};
+      if (this.backgroundImage) {
+        style['background-color'] = this.backgroundImage.color;
+      }
+      return style;
+    },
+  },
   methods: {
     getRandomInt(min, max) {
       return Math.floor(Math.random() * ((max - min) + 1)) + min;
