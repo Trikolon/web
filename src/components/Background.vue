@@ -1,13 +1,14 @@
 <template>
 <div id="backgroundContainer">
   <transition name="preview">
-    <img class="backgroundImage blur"
+    <img ref="imgPreview" class="backgroundImage blur"
          :style="computedStyle"
          :src="backgroundImage.preview">
   </transition>
   <transition name="full">
     <img ref="imgFull" class="backgroundImage"
-         v-show="loaded"
+         v-if="previewLoaded"
+         v-show="fullLoaded"
          :src="backgroundImage.full">
   </transition>
 </div>
@@ -23,7 +24,8 @@ export default {
   name: 'Background',
   data: () => ({
     backgroundImage: {},
-    loaded: false,
+    fullLoaded: false,
+    previewLoaded: false,
     imageFiles: [
       {
         full: berlinFull,
@@ -46,6 +48,20 @@ export default {
       return style;
     },
   },
+  watch: {
+    // Wait for preview to load and full image to initialize, then listen for full img load
+    previewLoaded(loaded) {
+      if (loaded) {
+        this.$nextTick(() => {
+          this.$refs.imgFull.addEventListener('load', () => {
+            this.fullLoaded = true;
+            console.debug('Loaded', this.$refs.imgFull);
+          });
+          console.debug('Load listener attached', this.$refs.imgFull);
+        });
+      }
+    },
+  },
   methods: {
     getRandomInt(min, max) {
       return Math.floor(Math.random() * ((max - min) + 1)) + min;
@@ -59,9 +75,11 @@ export default {
     this.backgroundImage = this.getRandomImage();
   },
   mounted() {
-    this.$refs.imgFull.addEventListener('load', () => {
-      this.loaded = true;
+    this.$refs.imgPreview.addEventListener('load', () => {
+      this.previewLoaded = true;
+      console.debug('Loaded', this.$refs.imgPreview);
     });
+    console.debug('Load listener attached', this.$refs.imgPreview);
   },
 };
 </script>
