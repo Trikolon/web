@@ -63,8 +63,8 @@ export default {
   },
   beforeMount() {
     new Fingerprint2().get((result, components) => {
-      console.log(result); // a hash, representing your device fingerprint
-      console.log(components); // an array of FP components
+      console.debug('Fingerprint hash', result); // a hash, representing your device fingerprint
+      console.debug('Fingerprint values', components); // an array of FP components
       this.fingerprintHash = result;
     });
   },
