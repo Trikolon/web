@@ -66,7 +66,6 @@ class DrunkenBishop {
     for (let i = 0; i < str.length - 1; i += 2) {
       const no = str[i] + str[i + 1];
       const noBin = Number.parseInt(no, 16).toString(2);
-      console.log('no', no, 'noBin', noBin);
       result += noBin;
     }
     return result;
