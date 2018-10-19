@@ -50,17 +50,6 @@ export default {
       return bishop(this.strTotalHashed);
     },
   },
-  methods: {
-    hex2bin(hex) {
-      return (parseInt(hex, 16).toString(2)).padStart(8, '0');
-    },
-  },
-  mounted() {
-    const hash = sha1(this.str);
-    console.log('str1 hash', hash);
-    const binaryHash = this.hex2bin(hash);
-    console.log('str1 binary hash', binaryHash);
-  },
 };
 </script>
 
