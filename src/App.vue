@@ -1,19 +1,22 @@
 <template>
   <div id="app">
-    <Background></Background>
-    <div id="centerBox">
-      <Navigation :heading="heading" :nav-items="navItems"></Navigation>
-    </div>
+    <Fingerprint></Fingerprint>
+    <!--<Background></Background>-->
+    <!--<div id="centerBox">-->
+      <!--<Navigation :heading="heading" :nav-items="navItems"></Navigation>-->
+    <!--</div>-->
   </div>
 </template>
 
 <script>
 import Navigation from './components/Navigation.vue';
 import Background from './components/Background.vue';
+import Fingerprint from './components/Fingerprint';
 
 export default {
   name: 'app',
   components: {
+    Fingerprint,
     Navigation,
     Background,
   },
