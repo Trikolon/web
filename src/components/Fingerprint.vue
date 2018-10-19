@@ -14,7 +14,7 @@
         <input type="text" readonly v-model="strTotalHashed">
         <br><br>
         <label> Ascii Image
-        <textarea v-model="strImage"></textarea>
+        <pre>{{strImage}}</pre>
         </label>
     </form>
 </template>
