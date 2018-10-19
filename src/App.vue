@@ -1,62 +1,20 @@
 <template>
   <div id="app">
-    <Fingerprint></Fingerprint>
-    <!--<Background></Background>-->
-    <!--<div id="centerBox">-->
-      <!--<Navigation :heading="heading" :nav-items="navItems"></Navigation>-->
-    <!--</div>-->
+    <Background></Background>
+    <div id="centerBox">
+      <router-view/>
+    </div>
   </div>
 </template>
 
 <script>
-import Navigation from './components/Navigation.vue';
 import Background from './components/Background.vue';
-import Fingerprint from './components/Fingerprint.vue';
 
 export default {
   name: 'app',
   components: {
-    Fingerprint,
-    Navigation,
     Background,
   },
-  data: () => ({
-    heading: 'Paul Zühlcke',
-    navItems: [
-      {
-        label: 'keybase',
-        url: new URL('https://keybase.io/pbz'),
-        icon: {
-          name: 'key',
-          group: 'fas',
-        },
-      },
-      {
-        label: 'github',
-        url: new URL('https://github.com/Trikolon'),
-        icon: {
-          name: 'github',
-          group: 'fab',
-        },
-      },
-      {
-        label: 'twitter',
-        url: new URL('https://twitter.com/deppaws'),
-        icon: {
-          name: 'twitter',
-          group: 'fab',
-        },
-      },
-      {
-        label: 'e-mail',
-        url: new URL('mailto:paul@zuehlcke.de'),
-        icon: {
-          name: 'envelope',
-          group: 'fas',
-        },
-      },
-    ],
-  }),
 };
 </script>
 
