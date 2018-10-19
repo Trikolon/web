@@ -8,6 +8,7 @@
               :key="index"
               :label="item.label"
               :icon="[item.icon.group, item.icon.name]"
+              :route="item.route"
               :url="item.url" >
       </NavItem>
     </template>
@@ -49,14 +50,6 @@ export default {
 <style scoped>
   #heading {
     margin: 1.5em;
-  }
-  #navigation > a {
-    opacity: 0.8;
-    padding: 1em;
-
-  }
-  #navigation > a:hover {
-    opacity: 1;
   }
   #navigation {
     flex: 2;

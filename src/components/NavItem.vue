@@ -1,23 +1,36 @@
 <template>
-    <a :href="url" target="_blank" rel="noopener">
+
+    <Ref class="ref" :url="url" :route="route">
         <div class="flex-container">
             <font-awesome-icon  :icon="icon" :size="iconSize" />
             <div id="navLabel">{{label}}</div>
         </div>
-    </a>
+    </Ref>
+
+    <!--<a :href="url" target="_blank" rel="noopener">-->
+        <!--<div class="flex-container">-->
+            <!--<font-awesome-icon  :icon="icon" :size="iconSize" />-->
+            <!--<div id="navLabel">{{label}}</div>-->
+        <!--</div>-->
+    <!--</a>-->
 </template>
 
 <script>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import Ref from './Ref.vue';
 
 
 export default {
   name: 'NavItem',
-  components: { FontAwesomeIcon },
+  components: { Ref, FontAwesomeIcon },
   props: {
     url: {
-      required: true,
+      required: false,
       type: URL,
+    },
+    route: {
+      required: false,
+      type: String,
     },
     label: {
       required: true,
@@ -37,22 +50,26 @@ export default {
       type: String,
     },
   },
+  beforeMount() {
+    let i = 0;
+    if (this.url != null) i += 1;
+    if (this.route != null) i += 1;
+    if (i !== 1) {
+      throw new Error('Error: Must provide either url or route');
+    }
+  },
 };
 </script>
 
 <style scoped>
-    a, a:hover {
-        color: inherit;
-        text-decoration: none;
-        cursor: default;
-    }
-
-    a:focus {
-        outline: 0;
-    }
-
     #navLabel {
         padding-top: 8px;
     }
-
+    .ref {
+        opacity: 0.8;
+        padding: 1em;
+    }
+    .ref:hover {
+        opacity: 1;
+    }
 </style>

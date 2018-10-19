@@ -43,6 +43,14 @@ export default {
           group: 'fas',
         },
       },
+      {
+        label: 'fingerprint',
+        route: 'fingerprint',
+        icon: {
+          name: 'fingerprint',
+          group: 'fas',
+        },
+      },
     ],
   }),
 };
