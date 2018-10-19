@@ -52,7 +52,7 @@ class DrunkenBishop {
   getMapString() {
     let result = '';
     for (let i = 0; i < this.LIMIT.X * this.LIMIT.Y; i += 1) {
-      if (i % this.LIMIT.X === 0) result += '\n';
+      if (i !== 0 && i % this.LIMIT.X === 0) result += '\n';
       result += this.symbols[this.map[i]];
     }
     return result;
