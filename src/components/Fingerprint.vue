@@ -16,6 +16,11 @@
         <label> Ascii Image
         <pre>{{strImage}}</pre>
         </label>
+
+        <br><br><br>
+        <label> Fingerprint Ascii Image
+            <pre>{{fingerprintImage}}</pre>
+        </label>
     </form>
 </template>
 
@@ -27,6 +32,7 @@
    */
 
 import sha1 from 'sha1';
+import Fingerprint2 from 'fingerprintjs2';
 
 import bishop from '../bishop';
 
@@ -35,6 +41,7 @@ export default {
   data: () => ({
     str: 'test string',
     str2: 'test string 2',
+    fingerprintHash: null,
   }),
   computed: {
     strHashed() {
@@ -49,6 +56,17 @@ export default {
     strImage() {
       return bishop(this.strTotalHashed);
     },
+    fingerprintImage() {
+      if (this.fingerprintHash == null) return '';
+      return bishop(this.fingerprintHash);
+    },
+  },
+  beforeMount() {
+    new Fingerprint2().get((result, components) => {
+      console.log(result); // a hash, representing your device fingerprint
+      console.log(components); // an array of FP components
+      this.fingerprintHash = result;
+    });
   },
 };
 </script>
