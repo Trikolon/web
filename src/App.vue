@@ -11,7 +11,7 @@
 <script>
 import Navigation from './components/Navigation.vue';
 import Background from './components/Background.vue';
-import Fingerprint from './components/Fingerprint';
+import Fingerprint from './components/Fingerprint.vue';
 
 export default {
   name: 'app',

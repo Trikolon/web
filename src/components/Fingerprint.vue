@@ -12,6 +12,10 @@
         <br>
         <label> String 1 + 2 hashed</label>
         <input type="text" readonly v-model="strTotalHashed">
+        <br><br>
+        <label> Ascii Image
+        <textarea v-model="strImage"></textarea>
+        </label>
     </form>
 </template>
 
@@ -23,6 +27,8 @@
    */
 
 import sha1 from 'sha1';
+
+import bishop from '../bishop';
 
 export default {
   name: 'Fingerprint',
@@ -40,8 +46,20 @@ export default {
     strTotalHashed() {
       return sha1(this.strHashed + this.str2Hashed);
     },
+    strImage() {
+      return bishop(this.strTotalHashed);
+    },
+  },
+  methods: {
+    hex2bin(hex) {
+      return (parseInt(hex, 16).toString(2)).padStart(8, '0');
+    },
   },
   mounted() {
+    const hash = sha1(this.str);
+    console.log('str1 hash', hash);
+    const binaryHash = this.hex2bin(hash);
+    console.log('str1 binary hash', binaryHash);
   },
 };
 </script>
