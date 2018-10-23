@@ -132,8 +132,8 @@ class DrunkenBishop {
 
 export { DrunkenBishop };
 
-export default (str) => {
-  const bishop = new DrunkenBishop(27, 13);
+export default (str, x, y) => {
+  const bishop = new DrunkenBishop(x, y);
   bishop.walk(str);
   return bishop.mapString;
 };
