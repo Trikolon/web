@@ -14,6 +14,10 @@ class DrunkenBishop {
     ];
   }
 
+  get mapSize() {
+    return this.LIMIT;
+  }
+
   get mapArray() {
     return this.map;
   }
