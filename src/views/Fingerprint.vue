@@ -90,7 +90,7 @@ export default {
       for (let y = 0; y < mapY; y += 1) {
         for (let x = 0; x < mapX; x += 1) {
           const i = (y * mapX) + x;
-          if (map[i] !== 2) {
+          if (map[i] > 2) {
             console.debug('draw');
             ctx.fillRect(x * modX, y * modY, modX - 2, modY - 2);
           }
