@@ -4,6 +4,7 @@ class DrunkenBishop {
       throw new Error('Invalid map bounds, must be odd numbers');
     }
     this.LIMIT = { X, Y };
+    this.map = null;
 
     this.symbols = [
       'S', 'E', ' ', '.', 'o', '+',
@@ -11,6 +12,22 @@ class DrunkenBishop {
       'X', '@', '%', '&',
       '#', '/', '^',
     ];
+  }
+
+  get mapArray() {
+    return this.map;
+  }
+
+  get mapString() {
+    let result = '';
+    if (this.map == null) {
+      return result;
+    }
+    for (let i = 0; i < this.LIMIT.X * this.LIMIT.Y; i += 1) {
+      if (i !== 0 && i % this.LIMIT.X === 0) result += '\n';
+      result += this.symbols[this.map[i]];
+    }
+    return result;
   }
 
   walk(hexStr) {
@@ -47,15 +64,6 @@ class DrunkenBishop {
     // Set start and end pos (doing this at the end so it's not overwritten)
     this.map[startPos] = 0;
     this.map[pos] = 1;
-  }
-
-  getMapString() {
-    let result = '';
-    for (let i = 0; i < this.LIMIT.X * this.LIMIT.Y; i += 1) {
-      if (i !== 0 && i % this.LIMIT.X === 0) result += '\n';
-      result += this.symbols[this.map[i]];
-    }
-    return result;
   }
 
   static hexToBinary(str) {
@@ -118,8 +126,10 @@ class DrunkenBishop {
   }
 }
 
+export { DrunkenBishop };
+
 export default (str) => {
-  const bishop = new DrunkenBishop();
+  const bishop = new DrunkenBishop(27, 13);
   bishop.walk(str);
-  return bishop.getMapString();
+  return bishop.mapString;
 };
