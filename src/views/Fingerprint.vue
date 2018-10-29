@@ -69,11 +69,16 @@ export default {
   methods: {
     getFingerprintHash() {
       return new Promise((resolve) => {
-        new Fingerprint2().get((result, components) => {
-          console.debug('Fingerprint hash', result); // a hash, representing your device fingerprint
-          console.debug('Fingerprint values', components); // an array of FP components
-          return resolve(result);
-        });
+        Fingerprint2.getPromise()
+          .then((components) => {
+            const values = components.map(comp => comp.value);
+            const hash = Fingerprint2.x64hash128(values.join(''), 31);
+
+            console.debug('Fingerprint values', components); // an array of FP components
+            console.debug('Fingerprint hash', hash); // a hash, representing your device fingerprint
+
+            resolve(hash);
+          });
       });
     },
     // TODO: move to bishop class
