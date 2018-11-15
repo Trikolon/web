@@ -1,7 +1,9 @@
 <template>
-    <div>
+    <div v-bind:class="{ ref: true, noStyle: !styled }">
         <router-link v-if="route" :to="route"><slot></slot></router-link>
-        <a v-if="url" :href="url" target="_blank" rel="noopener"><slot></slot></a>
+        <a v-if="url" :href="url" target="_blank" rel="noopener">
+            <slot></slot>
+        </a>
     </div>
 </template>
 
@@ -17,6 +19,11 @@ export default {
       required: false,
       type: String,
     },
+    styled: {
+      required: false,
+      default: false,
+      type: Boolean,
+    },
   },
   beforeMount() {
     let i = 0;
@@ -30,14 +37,23 @@ export default {
 </script>
 
 <style scoped>
-    a, a:hover {
+    .ref {
+        display: inline;
+    }
+
+    a {
         color: inherit;
+    }
+
+    .noStyle a, .noStyle a:hover, .noStyle a:visited {
+    /*.noStyle * {*/
+
         text-decoration: none;
         cursor: default;
     }
 
-
-    a:focus {
+    .noStyle a:focus {
+    /*.noStyle * {*/
         outline: 0;
     }
 </style>
