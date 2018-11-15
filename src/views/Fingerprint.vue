@@ -1,113 +1,58 @@
 <template>
-    <div>
-        <label>String 1
-            <input type="text" v-model="str">
-        </label>
-        <br>
-        <label>String 1 Hash
-            <input type="text" readonly v-model="strHashed">
-        </label>
-        <br><br>
-        <div class="p">
-            <h2>String Image ASCII</h2>
-            <pre style="border: 1px solid;">{{strImage}}</pre>
-        </div>
+    <div class="content" >
+        <h1>Fingerprint</h1>
+        <p>This is a graphical representation of your browser fingerprint.
+            Try to open this website on a different device, the ASCII image will be different.</p>
+        <FPrintVis></FPrintVis>
+        <a id="showMore" @click="showExplanation = !showExplanation">How does this work?</a>
+        <transition name="fade">
+            <div v-show="showExplanation">
+        <p >
 
-
-        <div class="p">
-            <h2>Fingerprint Image ASCII</h2>
-            <pre style="border: 1px solid;">{{fingerprintImageAscii}}</pre>
+            This site gathers information your browser provides, such as
+            operating system, screen resolution, set display language, supported fonts and many more metrics.
+            All this information is combined into a hash which should be fairly unique to your machine: Your
+            <a href="https://en.wikipedia.org/wiki/Device_fingerprint" target="_blank" rel="nofollow">device fingerprint</a>.
+        </p>
+            <p>
+            I then use an
+            <a href="https://pthree.org/2013/05/30/openssh-keys-and-the-drunken-bishop/" target="_blank" rel="nofollow">
+                algorithm  that can draw images from hashes</a>
+            and show the result as ASCII art.
+        </p>
         </div>
-
-        <div class="p">
-            <h2>Fingerprint</h2>
-            <canvas ref="fpCanvas"></canvas>
-        </div>
+        </transition>
     </div>
 </template>
 
 <script>
 
-import sha1 from 'sha1';
-import Fingerprint2 from 'fingerprintjs2';
-
-import bishop from '../bishop';
-import { DrunkenBishop } from '../bishop';
+import FPrintVis from '../components/FPrintVis.vue';
 
 export default {
   name: 'Fingerprint',
+  components: { FPrintVis },
   data: () => ({
-    str: 'test string',
-    fingerprintHash: null,
+    showExplanation: false,
   }),
-  computed: {
-    strHashed() {
-      return sha1(this.str);
-    },
-    strImage() {
-      return bishop(this.strHashed);
-    },
-    fingerprintImageAscii() {
-      if (this.fingerprintHash == null) return '';
-      return bishop(this.fingerprintHash);
-    },
-  },
-  beforeMount() {
-    this.getFingerprintHash()
-      .then((hash) => {
-        this.fingerprintHash = hash;
-
-        const b = new DrunkenBishop();
-        b.walk(this.fingerprintHash);
-
-        const map = b.mapArray;
-        console.debug('map array', map);
-
-        this.drawFingerprintCanvas(this.$refs.fpCanvas, map, b.mapSize);
-      });
-  },
-  methods: {
-    getFingerprintHash() {
-      return new Promise((resolve) => {
-        Fingerprint2.getPromise()
-          .then((components) => {
-            const values = components.map(comp => comp.value);
-            const hash = Fingerprint2.x64hash128(values.join(''), 31);
-
-            console.debug('Fingerprint values', components); // an array of FP components
-            console.debug('Fingerprint hash', hash); // a hash, representing your device fingerprint
-
-            resolve(hash);
-          });
-      });
-    },
-    // TODO: move to bishop class
-    drawFingerprintCanvas(canvas, map, mapSize) {
-      const mapX = mapSize.X;
-      const mapY = mapSize.Y;
-      const canvasX = canvas.width;
-      const canvasY = canvas.height;
-      const ctx = canvas.getContext('2d');
-
-      const modX = Math.floor(canvasX / mapX);
-      const modY = Math.floor(canvasY / mapY);
-
-      for (let y = 0; y < mapY; y += 1) {
-        for (let x = 0; x < mapX; x += 1) {
-          const i = (y * mapX) + x;
-          if (map[i] > 2) {
-            console.debug('draw');
-            ctx.fillRect(x * modX, y * modY, modX - 2, modY - 2);
-          }
-        }
-      }
-    },
-  },
 };
 </script>
 
 <style scoped>
-    .p {
-        margin-bottom: 5em;
+    a {
+        color: white;
+    }
+    .content {
+        text-align: center;
+        max-width: 40em;
+    }
+    #showMore:hover {
+        cursor: pointer;
+    }
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity .5s;
+    }
+    .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+        opacity: 0;
     }
 </style>

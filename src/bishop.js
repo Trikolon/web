@@ -1,10 +1,9 @@
 class DrunkenBishop {
   constructor(X = 17, Y = 9) {
-    if (X % 2 !== 1 || Y % 2 !== 1) {
-      throw new Error('Invalid map bounds, must be odd numbers');
-    }
     this.LIMIT = { X, Y };
     this.map = null;
+    this.minValue = null;
+    this.maxValue = null;
 
     this.symbols = [
       'S', 'E', ' ', '.', 'o', '+',
@@ -29,7 +28,7 @@ class DrunkenBishop {
     }
     for (let i = 0; i < this.LIMIT.X * this.LIMIT.Y; i += 1) {
       if (i !== 0 && i % this.LIMIT.X === 0) result += '\n';
-      result += this.symbols[this.map[i]];
+      result += this.symbols[this.map[i]] || this.symbols[this.symbols.length - 1];
     }
     return result;
   }
@@ -39,6 +38,10 @@ class DrunkenBishop {
       throw new Error('Expected str to be a string');
     }
 
+    // Initialize variables to track value bounds
+    this.minValue = 0;
+    this.maxValue = this.minValue;
+
     // Convert hex string to binary string
     const str = DrunkenBishop.hexToBinary(hexStr);
 
@@ -46,7 +49,7 @@ class DrunkenBishop {
 
 
     // Set initial position to middle of map
-    const startPos = ((this.LIMIT.X * this.LIMIT.Y) - 1) / 2;
+    const startPos = Math.round(((this.LIMIT.X * this.LIMIT.Y) - 1) / 2);
     let pos = startPos;
 
     // Iterate binary string
@@ -63,6 +66,9 @@ class DrunkenBishop {
       // Only increment if position has changed
       upd = pos === upd ? 0 : 1;
       this.map[pos] += upd;
+
+      // update max value
+      if (this.map[pos] > this.maxValue) this.maxValue = this.map[pos];
     }
 
     // Set start and end pos (doing this at the end so it's not overwritten)
