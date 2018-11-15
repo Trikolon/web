@@ -9,8 +9,10 @@
             <article v-show="showExplanation">
                 <p>
                     This site gathers information your browser provides, such as
-                    operating system, screen resolution, set display language, supported fonts and many more metrics.
-                    All this information is combined into a hash which should be fairly unique to your machine: Your
+                    operating system, screen resolution, set display language,
+                    supported fonts and many more metrics.
+                    All this information is combined into a hash
+                    which should be fairly unique to your machine: Your
                     <Ref :url="refs.deviceFingerprint" :styled="true">device fingerprint</Ref>.
                 </p>
                 <p>
@@ -19,6 +21,7 @@
                         algorithm that can draw images from hashes</Ref>
                     and show the result as ASCII art.
                 </p>
+                <p><Ref :url="refs.github" :styled="true">Source Code</Ref></p>
             </article>
         </transition>
     </div>
@@ -37,6 +40,7 @@ export default {
     refs: {
       deviceFingerprint: new URL('https://en.wikipedia.org/wiki/Device_fingerprint'),
       drunkenBishop: new URL('https://pthree.org/2013/05/30/openssh-keys-and-the-drunken-bishop/'),
+      github: new URL('https://github.com/Trikolon/web/blob/master/src/views/Fingerprint.vue'),
     },
   }),
 };
