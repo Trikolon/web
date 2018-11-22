@@ -3,7 +3,7 @@
         <h1>Fingerprint</h1>
         <p>This is a graphical representation of your browser fingerprint.
             Try to open this website on a different device, the ASCII image will be different.</p>
-        <FPrintVis></FPrintVis>
+        <FPrintVis @hash="setHash"></FPrintVis>
         <a id="showMore" @click="showExplanation = !showExplanation">How does this work?</a>
         <transition name="fade">
             <article v-show="showExplanation">
@@ -12,9 +12,10 @@
                     operating system, screen resolution, set display language,
                     supported fonts and many more metrics.
                     All this information is combined into a hash
-                    which should be fairly unique to your machine: Your
-                    <Ref :url="refs.deviceFingerprint" :styled="true">device fingerprint</Ref>.
+                    which should be fairly unique to your machine.<br> Your
+                    <Ref :url="refs.deviceFingerprint" :styled="true">device fingerprint</Ref>:
                 </p>
+                <code>{{hash}}</code>
                 <p>
                     I then use an
                     <Ref :url="refs.drunkenBishop" :styled="true">
@@ -37,12 +38,18 @@ export default {
   components: { FPrintVis, Ref },
   data: () => ({
     showExplanation: false,
+    hash: null,
     refs: {
       deviceFingerprint: new URL('https://en.wikipedia.org/wiki/Device_fingerprint'),
       drunkenBishop: new URL('https://pthree.org/2013/05/30/openssh-keys-and-the-drunken-bishop/'),
       github: new URL('https://github.com/Trikolon/web/blob/master/src/views/Fingerprint.vue'),
     },
   }),
+  methods: {
+    setHash(hash) {
+      this.hash = hash;
+    },
+  },
 };
 </script>
 

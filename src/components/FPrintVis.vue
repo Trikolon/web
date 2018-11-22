@@ -21,6 +21,7 @@ export default {
     this.getFingerprintHash()
       .then((hash) => {
         this.fpHash = hash;
+        this.$emit('hash', hash);
         this.$emit('ready');
       });
   },
