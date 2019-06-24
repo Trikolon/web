@@ -11,18 +11,18 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.14",
     "@fortawesome/free-brands-svg-icons": "^5.7.1",
     "@fortawesome/free-solid-svg-icons": "^5.7.1",
-    "@fortawesome/vue-fontawesome": "^0.1.5",
-    "fingerprintjs2": "^2.0.6",
+    "@fortawesome/vue-fontawesome": "^0.1.6",
+    "fingerprintjs2": "^2.1.0",
     "sha1": "^1.1.1",
     "vue": "^2.6.4",
-    "vue-router": "^3.0.2"
+    "vue-router": "^3.0.6"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.4.0",
-    "@vue/cli-plugin-eslint": "^3.4.0",
-    "@vue/cli-service": "^3.4.0",
+    "@vue/cli-plugin-babel": "^3.8.0",
+    "@vue/cli-plugin-eslint": "^3.8.0",
+    "@vue/cli-service": "^3.8.4",
     "@vue/eslint-config-airbnb": "^4.0.0",
     "babel-plugin-transform-remove-console": "^6.9.4",
-    "vue-template-compiler": "^2.6.4"
+    "vue-template-compiler": "^2.6.10"
   }
 }
