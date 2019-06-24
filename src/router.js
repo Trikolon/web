@@ -19,10 +19,5 @@ export default new Router({
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "fprint" */ './views/Fingerprint.vue'),
     },
-    {
-      path: '/debug',
-      name: 'Debug',
-      component: () => import(/* webpackChunkName: "debug" */ './views/Debug.vue'),
-    },
   ],
 });
