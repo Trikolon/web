@@ -1,5 +1,5 @@
 <template>
-    <div class="content">
+    <div>
         <h1>Fingerprint</h1>
         <p>This is a graphical representation of your browser fingerprint.
             Try to open this website on a different device, the ASCII image will be different.</p>
@@ -54,11 +54,6 @@ export default {
 </script>
 
 <style scoped>
-
-    .content {
-        text-align: center;
-        max-width: 40em;
-    }
 
     #showMore {
         text-decoration: underline;

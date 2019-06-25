@@ -35,9 +35,8 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
-  .flex-container {
+<style scoped>
+  .flex-container, * >>> .flex-container {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -46,8 +45,6 @@ export default {
     align-items: center;
     height: 100%;
   }
-</style>
-<style scoped>
   #heading {
     margin: 1.5em;
   }

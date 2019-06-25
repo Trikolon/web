@@ -12,11 +12,13 @@ export default new Router({
       component: Home,
     },
     {
+      path: '/projects',
+      name: 'Projects',
+      component: () => import(/* webpackChunkName: "projects" */ './views/Projects.vue'),
+    },
+    {
       path: '/fingerprint',
       name: 'Fingerprint',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "fprint" */ './views/Fingerprint.vue'),
     },
   ],

@@ -44,10 +44,10 @@ export default {
         },
       },
       {
-        label: 'fingerprint',
-        route: 'fingerprint',
+        label: 'projects',
+        route: 'projects',
         icon: {
-          name: 'fingerprint',
+          name: 'list',
           group: 'fas',
         },
       },

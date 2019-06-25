@@ -39,4 +39,10 @@ export default {
     flex-wrap: nowrap;
     justify-content: space-between;
   }
+
+  #centerBox > * {
+    text-align: center;
+    max-width: 40em;
+    padding: 2em;
+  }
 </style>

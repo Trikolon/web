@@ -56,7 +56,7 @@ export default {
           this.$refs.imgFull.addEventListener('load', () => {
             this.fullLoaded = true;
             console.debug('Loaded', this.$refs.imgFull);
-          });
+          }, { once: true });
           console.debug('Load listener attached', this.$refs.imgFull);
         });
       }
@@ -78,7 +78,7 @@ export default {
     this.$refs.imgPreview.addEventListener('load', () => {
       this.previewLoaded = true;
       console.debug('Loaded', this.$refs.imgPreview);
-    });
+    }, { once: true });
     console.debug('Load listener attached', this.$refs.imgPreview);
   },
 };

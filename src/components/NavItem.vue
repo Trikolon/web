@@ -6,13 +6,6 @@
             <div id="navLabel">{{label}}</div>
         </div>
     </Ref>
-
-    <!--<a :href="url" target="_blank" rel="noopener">-->
-        <!--<div class="flex-container">-->
-            <!--<font-awesome-icon  :icon="icon" :size="iconSize" />-->
-            <!--<div id="navLabel">{{label}}</div>-->
-        <!--</div>-->
-    <!--</a>-->
 </template>
 
 <script>
