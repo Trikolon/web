@@ -22,9 +22,6 @@
   # Remove server header
   Server: Web
 
-  # Redirect all routes to index file for vue-router html5 history mode
-  /index.html 200
-
 # Enable cache revalidation for index file only
 /index.html
   Cache-Control: must-revalidate
