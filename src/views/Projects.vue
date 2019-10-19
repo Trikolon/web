@@ -37,7 +37,7 @@ export default {
         title: 'Evil Trap Site',
         description: 'A collection of web experiments that abuse browser mechanics or bugs to slow / crash the browser, or spam and phish the user (Mostly targeting Firefox)',
         link: {
-          url: new URL('https://evil.pbz.pw'),
+          url: new URL('https://eviltrap.site'),
           label: 'Demo Website',
         },
         icon: {
