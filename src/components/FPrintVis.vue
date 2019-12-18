@@ -3,8 +3,8 @@
 </template>
 
 <script>
-import bishop from '@/bishop';
 import Fingerprint2 from 'fingerprintjs2';
+import bishop from '@/bishop';
 
 export default {
   name: 'FPrintVis',
