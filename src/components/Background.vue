@@ -19,6 +19,8 @@ import berlinPreview from '../assets/berlin-preview.jpg';
 import berlinFull from '../assets/berlin.jpg';
 import ouluPreview from '../assets/oulu-preview.jpg';
 import ouluFull from '../assets/oulu.jpg';
+import alpinePreview from '../assets/alpine-preview.jpg';
+import alpineFull from '../assets/alpine.jpg';
 
 export default {
   name: 'Background',
@@ -36,6 +38,11 @@ export default {
         full: ouluFull,
         preview: ouluPreview,
         color: '#466c9a',
+      },
+      {
+        full: alpineFull,
+        preview: alpinePreview,
+        color: '#60599a',
       },
     ],
   }),
