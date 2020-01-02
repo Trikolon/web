@@ -58,13 +58,17 @@ export default {
   watch: {
     // Wait for preview to load and full image to initialize, then listen for full img load
     previewLoaded(loaded) {
+      console.debug('Preview Image Loaded', this.$refs.imgPreview);
+      if (!this.shouldLoadFullImg()) {
+        console.debug('Not loading full size image because device indicates data saving mode.');
+        return;
+      }
       if (loaded) {
         this.$nextTick(() => {
           this.$refs.imgFull.addEventListener('load', () => {
             this.fullLoaded = true;
-            console.debug('Loaded', this.$refs.imgFull);
+            console.debug('Full Image Loaded', this.$refs.imgFull);
           }, { once: true });
-          console.debug('Load listener attached', this.$refs.imgFull);
         });
       }
     },
@@ -77,6 +81,13 @@ export default {
       const i = this.getRandomInt(0, this.imageFiles.length - 1);
       return this.imageFiles[i];
     },
+    shouldLoadFullImg() {
+      if (!navigator || !navigator.connection) {
+        return true; // If we can't get network info, we will always load the img
+      }
+      // Strict type checking to catch cases where saveData is undefined or null
+      return navigator.connection.saveData !== true;
+    },
   },
   beforeMount() {
     this.backgroundImage = this.getRandomImage();
@@ -84,9 +95,7 @@ export default {
   mounted() {
     this.$refs.imgPreview.addEventListener('load', () => {
       this.previewLoaded = true;
-      console.debug('Loaded', this.$refs.imgPreview);
     }, { once: true });
-    console.debug('Load listener attached', this.$refs.imgPreview);
   },
 };
 </script>
