@@ -9,7 +9,6 @@
         <Ref v-if="link" :route="link.route" :url="link.url" :styled="true">{{link.label}}</Ref>
     </div>
 
-
 </div>
 </template>
 

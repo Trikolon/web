@@ -12,7 +12,6 @@
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import Ref from './Ref.vue';
 
-
 export default {
   name: 'NavItem',
   components: { Ref, FontAwesomeIcon },
@@ -35,7 +34,7 @@ export default {
         return typeof value === 'string'
           || (Array.isArray(value)
             && value.length === 2
-            && value.every(v => typeof v === 'string'));
+            && value.every((v) => typeof v === 'string'));
       },
     },
     iconSize: {

@@ -30,7 +30,7 @@ export default {
       return new Promise((resolve) => {
         Fingerprint2.getPromise()
           .then((components) => {
-            const values = components.map(comp => comp.value);
+            const values = components.map((comp) => comp.value);
             const hash = Fingerprint2.x64hash128(values.join(''));
             console.debug('Fingerprint values', components); // an array of FP components
             console.debug('Fingerprint hash', hash); // a hash, representing your device fingerprint
