@@ -13,7 +13,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Install Dependencies
-        uses: actions/setup-node@master
         run: npm ci
       - name: Build
         run: npm run build
