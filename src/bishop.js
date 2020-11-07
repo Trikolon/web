@@ -47,7 +47,6 @@ class DrunkenBishop {
 
     this.map = new Array(this.LIMIT.X * this.LIMIT.Y).fill(2);
 
-
     // Set initial position to middle of map
     const startPos = Math.round(((this.LIMIT.X * this.LIMIT.Y) - 1) / 2);
     let pos = startPos;
