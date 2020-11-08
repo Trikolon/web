@@ -1,7 +1,7 @@
 account_id = "28f1e029a998697424bf651aa210243f"
 name = "pbz-web"
 type = "webpack"
-route = "pbz.im/*"
+routes = ["pbz.im/*", "www.pbz.im/*"]
 workers_dev = false
 zone_id = "f77a628707f928cbc90153f171b52580"
 

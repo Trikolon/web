@@ -25,11 +25,11 @@ addEventListener('fetch', (event) => {
 });
 
 function addCustomHeaders(requestURL, response) {
-  const regex = new RegExp(/\S+\/(js|css|img)\/\S+/);
+  const regex = new RegExp(/\/(js|css|img)\/\S+/);
   const { headers } = response;
 
   // Set caching headers
-  if (regex.test(requestURL)) {
+  if (regex.test(requestURL.pathname)) {
     // For assets with hashes in filename we can instruct the browser to cache without
     // revalidation.
     headers.append('Cache-Control', 'public, max-age=31536000, immutable');
@@ -48,6 +48,12 @@ function addCustomHeaders(requestURL, response) {
 async function handleEvent(event) {
   const url = new URL(event.request.url);
   const options = {};
+
+  // Redirect www
+  if (url.hostname.startsWith('www.')) {
+    url.hostname = url.hostname.substr(4, url.hostname.length);
+    return Response.redirect(url, 301);
+  }
 
   options.mapRequestToAsset = (req) => {
     // First let's apply the default handler, which we imported from
