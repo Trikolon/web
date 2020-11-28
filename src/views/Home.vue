@@ -29,7 +29,7 @@ export default {
       },
       {
         label: 'twitter',
-        url: new URL('https://twitter.com/deppaws'),
+        url: new URL('https://twitter.com/pzuehlcke'),
         icon: {
           name: 'twitter',
           group: 'fab',
