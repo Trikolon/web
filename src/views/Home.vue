@@ -12,14 +12,6 @@ export default {
     heading: 'Paul Zühlcke',
     navItems: [
       {
-        label: 'keybase',
-        url: new URL('https://keybase.io/pbz'),
-        icon: {
-          name: 'key',
-          group: 'fas',
-        },
-      },
-      {
         label: 'github',
         url: new URL('https://github.com/Trikolon'),
         icon: {
