@@ -28,6 +28,14 @@ export default {
         },
       },
       {
+        label: 'mastodon',
+        url: new URL('https://mastodon.social/@pbz'),
+        icon: {
+          name: 'mastodon',
+          group: 'fab',
+        },
+      },
+      {
         label: 'e-mail',
         url: new URL('mailto:paul@zuehlcke.de'),
         icon: {
