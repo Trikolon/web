@@ -8,6 +8,7 @@
               :key="index"
               :label="item.label"
               :icon="[item.icon.group, item.icon.name]"
+              :extraRel="item.extraRel"
               :route="item.route"
               :url="item.url" >
       </NavItem>

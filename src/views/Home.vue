@@ -30,6 +30,7 @@ export default {
       {
         label: 'mastodon',
         url: new URL('https://mastodon.social/@pbz'),
+        extraRel: 'me',
         icon: {
           name: 'mastodon',
           group: 'fab',

@@ -1,7 +1,7 @@
 <template>
     <div v-bind:class="{ ref: true, noStyle: !styled }">
         <router-link v-if="route" :to="route"><slot></slot></router-link>
-        <a v-if="url" :href="url" target="_blank" rel="noopener">
+        <a v-if="url" :href="url" target="_blank" :rel="rel">
             <slot></slot>
         </a>
     </div>
@@ -10,10 +10,17 @@
 <script>
 export default {
   name: 'Ref',
+  data: () => ({
+    defaultRel: 'noopener',
+  }),
   props: {
     url: {
       required: false,
       type: URL,
+    },
+    extraRel: {
+      required: false,
+      type: String,
     },
     route: {
       required: false,
@@ -32,6 +39,14 @@ export default {
     if (i !== 1) {
       throw new Error('Error: Must provide either url or route');
     }
+  },
+  computed: {
+    rel() {
+      if (this.extraRel) {
+        return `${this.defaultRel} ${this.extraRel}`;
+      }
+      return this.defaultRel;
+    },
   },
 };
 </script>

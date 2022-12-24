@@ -1,6 +1,5 @@
 <template>
-
-    <Ref class="ref" :url="url" :route="route">
+    <Ref class="ref" :url="url" :route="route" :extraRel="extraRel">
         <div class="flex-container">
             <font-awesome-icon  :icon="icon" :size="iconSize" />
             <div id="navLabel">{{label}}</div>
@@ -19,6 +18,10 @@ export default {
     url: {
       required: false,
       type: URL,
+    },
+    extraRel: {
+      required: false,
+      type: String,
     },
     route: {
       required: false,
