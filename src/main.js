@@ -1,6 +1,6 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
-  faGithub, faTwitter, faMastodon, faFirefox,
+  faGithub, faMastodon, faFirefox,
 } from '@fortawesome/free-brands-svg-icons';
 import {
   faEnvelope, faFingerprint, faList, faGamepad, faBars, faPuzzlePiece, faWifi,
@@ -10,7 +10,7 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
 
-library.add(faGithub, faTwitter, faMastodon, faEnvelope, faFingerprint, faList, faGamepad, faBars,
+library.add(faGithub, faMastodon, faEnvelope, faFingerprint, faList, faGamepad, faBars,
   faFirefox, faPuzzlePiece, faWifi);
 
 Vue.config.productionTip = false;

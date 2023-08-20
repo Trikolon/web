@@ -20,14 +20,6 @@ export default {
         },
       },
       {
-        label: 'twitter',
-        url: new URL('https://twitter.com/pzuehlcke'),
-        icon: {
-          name: 'twitter',
-          group: 'fab',
-        },
-      },
-      {
         label: 'mastodon',
         url: new URL('https://mastodon.social/@pbz'),
         extraRel: 'me',
